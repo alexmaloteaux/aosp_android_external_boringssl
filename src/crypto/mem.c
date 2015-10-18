@@ -116,6 +116,11 @@ void OPENSSL_cleanse(void *ptr, size_t len) {
 #endif  /* !OPENSSL_NO_ASM */
 }
 
+/* Needed by gpsd */
+void *CRYPTO_malloc(int num, const char *file, int line) {
+  return OPENSSL_malloc(num);
+}
+
 int CRYPTO_memcmp(const void *in_a, const void *in_b, size_t len) {
   size_t i;
   const uint8_t *a = in_a;
