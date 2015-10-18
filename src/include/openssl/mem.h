@@ -78,6 +78,9 @@ extern "C" {
 #define OPENSSL_realloc realloc
 #define OPENSSL_free free
 
+/* Needed by gpsd */
+OPENSSL_EXPORT void *CRYPTO_malloc(int num, const char *file, int line);
+
 /* OPENSSL_realloc_clean acts like |realloc|, but clears the previous memory
  * buffer.  Because this is implemented as a wrapper around |malloc|, it needs
  * to be given the size of the buffer pointed to by |ptr|. */
@@ -93,6 +96,7 @@ OPENSSL_EXPORT void OPENSSL_cleanse(void *ptr, size_t len);
  * defined order as the return value when a != b is undefined, other than to be
  * non-zero. */
 OPENSSL_EXPORT int CRYPTO_memcmp(const void *a, const void *b, size_t len);
+
 
 /* OPENSSL_hash32 implements the 32 bit, FNV-1a hash. */
 OPENSSL_EXPORT uint32_t OPENSSL_hash32(const void *ptr, size_t len);
